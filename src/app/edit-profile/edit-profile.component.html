@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Edit Profile!</h1>
+  <br/>
+  <div class="alert alert-warning" *ngIf='isEditProfileFailed'>{{ errorMessage }}</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _name.invalid'>Enter valid name!</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _username.invalid'>Enter valid username!</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _email.invalid'>Enter valid username!</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _password.invalid'>Enter valid username!</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _securityQuestion.invalid'>Enter valid username!</div>
+  <div class="alert alert-warning" *ngIf='!editProfileForm.dirty && _answer.invalid'>Enter valid username!</div>
+  <br />
+
+  <form (ngSubmit)="!editProfileForm.invalid && editProfileProcess()" #editProfileForm="ngForm">
+      <div class="from-group">
+          <label for="name">Name:</label>
+          <input type="text" #_name="ngModel" id="name" class="form-control" name="name" [(ngModel)]="user.name" />
+        </div>
+    <div class="from-group">
+      <label for="username">Username:</label>
+      <input type="text" #_username="ngModel" id="username" class="form-control" name="username" [(ngModel)]="user.username" />
+    </div>
+    <div class="from-group">
+      <label for="email">Email:</label>
+      <input type="email" #_email="ngModel" id="email" class="form-control" name="email" [(ngModel)]="user.email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" #_password="ngModel" id="password" class="form-control" name="password" [(ngModel)]="user.password" />
+    </div>
+    <div class="form-group">
+      <label for="securityQuestion">SecurityQuestion:</label>
+      <select id="securityQuestion" #_securityQuestion="ngModel" [(ngModel)]="user.securityQuestion" name="securityQuestion" class="form-control">
+        <option *ngFor="let question of questions" [value]="question">{{ question }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="answer">Answer:</label>
+      <input type="text" #_answer="ngModel" id="answer" class="form-control" name="answer" [(ngModel)]="user.answer" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

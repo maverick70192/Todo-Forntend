@@ -1,0 +1,27 @@
+<header>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a *ngIf="!username" routerLink="/" class="navbar-brand">TODOS</a>
+    <a *ngIf="username" [routerLink]="['welcome', storageService.getUsername()]" class="navbar-brand">TODOS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li *ngIf='storageService.isUserLoggedIn()' class="nav-item">
+          <a [routerLink]="['welcome', storageService.getUsername()]" class="nav-link">HOME</a></li>
+        <li *ngIf='storageService.isUserLoggedIn()' class="nav-item"><a routerLink="/todos" class="nav-link">MY
+            TODOS</a></li>
+      </ul>
+      <ul class="navbar-nav navbar-collapse justify-content-end">
+        <li *ngIf='!storageService.isUserLoggedIn()' class="nav-item"><a routerLink="/register" class="nav-link">REGISTER</a>
+        </li>
+        <li *ngIf='!storageService.isUserLoggedIn()' class="nav-item"><a routerLink="/login" class="nav-link">LOGIN</a>
+        </li>
+        <li *ngIf='storageService.isUserLoggedIn()' class="nav-item"><a [routerLink]="['profile', storageService.getUsername()]" class="nav-link">{{ storageService.getUsername() | uppercase }}</a>
+        </li>
+        <li *ngIf='storageService.isUserLoggedIn()' class="nav-item"><a routerLink="/logout" class="nav-link">LOGOUT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
